@@ -2,5 +2,8 @@
 def call(String name = 'human') {
     // Any valid steps can be called from this code, just like in other
     // Scripted Pipeline
-    echo "Hello, ${env.keys}."
+    env.each{
+        key, value -> echo key;
+    }
+    echo "Hello, ${name}."
 }
