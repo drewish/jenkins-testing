@@ -1,9 +1,20 @@
-//import org.kohsuke.github.GitHub
-import java.net.URL
+import org.kohsuke.github.*
 
-def call(String oauthAccessToken) {
-//  def gh = GitHub.connectUsingOAuth(oauthAccessToken)
-  echo new URL("http://example.org/").text
+//import java.net.URL
+//import groovy.json.JsonSlurper
+
+def call(String oauthAccessToken, String query) {
+  def gh = GitHub.connectUsingOAuth(oauthAccessToken)
+  def search = gh.searchIssues().q('repo:recurly/recurly-app').q('type:pr').q('label:qa4')
+  echo search.list
+// final GHContentSearchBuilder searcher;
+// searcher.repo("foo").q("query1").list(); // terms are repo:foo, query1
+//repo:recurly/recurly-app type:pr label:qa4 state:open
+
+//  JsonSlurper
+//  req.add_field "Authorization", "token #{ENV['GITHUB_TOKEN']}"
+//  req.add_field "Content-Type", "application/json"
+//  echo new URL("http://example.org/").text
 
   // github_get("https://api.github.com/repos/recurly/#{repo}/issues?per_page=100&state=open&labels=#{URI.escape(label)}")
 }
