@@ -11,9 +11,11 @@ def call(String oauthAccessToken) {
   // repo:recurly/recurly-app type:pr label:qa4 state:open
 
   def search = gh.searchIssues().q("repo:${repoName}").q('type:pr').q("label:${lableName}").isOpen()
+  def prs = []
   for (issue in search.list()){
-    println issue
-    repo.getPullRequest(issue.getNumber())
+    pr = repo.getPullRequest(issue.getNumber())
+    println pr
+    prs << pr
   }
 
 
