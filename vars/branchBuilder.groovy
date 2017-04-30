@@ -1,10 +1,6 @@
 import org.kohsuke.github.*
 import com.cloudbees.groovy.cps.NonCPS
 
-def call(String oAuthAccessToken) {
-  findBranches('recurly/recurly-app', 'qa4')
-}
-
 @NonCPS
 def findBranches(String repoName, String lableName, String oAuthAccessToken) {
   def gh = GitHub.connectUsingOAuth(oAuthAccessToken)
@@ -18,3 +14,8 @@ def findBranches(String repoName, String lableName, String oAuthAccessToken) {
   }
   branches
 }
+
+def call(String oAuthAccessToken) {
+  findBranches('recurly/recurly-app', 'qa4')
+}
+
