@@ -5,8 +5,10 @@ import org.kohsuke.github.*
 
 def call(String oauthAccessToken) {
   def gh = GitHub.connectUsingOAuth(oauthAccessToken)
-  def search = gh.searchIssues().q('repo:recurly/recurly-app').q('type:pr').q('label:qa4')
-  echo search.list
+  def search = gh.searchIssues().q('repo:recurly/recurly-app').q('type:pr').q('label:qa4').isOpen()
+  search.list().each {
+    echo "each ${it}"
+  }
 //repo:recurly/recurly-app type:pr label:qa4 state:open
 
 //  JsonSlurper
