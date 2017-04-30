@@ -7,8 +7,6 @@ def call(String oauthAccessToken, String query) {
   def gh = GitHub.connectUsingOAuth(oauthAccessToken)
   def search = gh.searchIssues().q('repo:recurly/recurly-app').q('type:pr').q('label:qa4')
   echo search.list
-// final GHContentSearchBuilder searcher;
-// searcher.repo("foo").q("query1").list(); // terms are repo:foo, query1
 //repo:recurly/recurly-app type:pr label:qa4 state:open
 
 //  JsonSlurper
