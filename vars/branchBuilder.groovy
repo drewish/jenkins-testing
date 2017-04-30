@@ -15,6 +15,7 @@ def call(String oauthAccessToken) {
   for (issue in search.list()){
     pr = repo.getPullRequest(issue.getNumber())
     println pr
+    println pr.getHead().getRef()
     prs << pr
   }
 
