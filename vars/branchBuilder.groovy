@@ -3,7 +3,7 @@ import org.kohsuke.github.*
 //import java.net.URL
 //import groovy.json.JsonSlurper
 
-def call(String oauthAccessToken, String query) {
+def call(String oauthAccessToken) {
   def gh = GitHub.connectUsingOAuth(oauthAccessToken)
   def search = gh.searchIssues().q('repo:recurly/recurly-app').q('type:pr').q('label:qa4')
   echo search.list
