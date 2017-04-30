@@ -8,8 +8,7 @@ def call(String repoName, String lableName, String oAuthAccessToken) {
 
   def branches = []
   for (issue in search.list()){
-    pr = repo.getPullRequest(issue.getNumber())
-    bra << pr.getHead().getRef()
+    branches << repo.getPullRequest(issue.getNumber()).getHead().getRef()
   }
   branches
 }
