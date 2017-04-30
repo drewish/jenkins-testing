@@ -4,10 +4,15 @@ import org.kohsuke.github.*
 //import groovy.json.JsonSlurper
 
 def call(String oauthAccessToken) {
+  def repoName = 'recurly/recurly-app'
+  def lableName = 'qa4'
   def gh = GitHub.connectUsingOAuth(oauthAccessToken)
   // repo:recurly/recurly-app type:pr label:qa4 state:open
-  def search = gh.searchIssues().q('repo:recurly/recurly-app').q('type:pr').q('label:qa4').isOpen()
+
+  def search = gh.searchIssues().q("repo:${repoName}").q('type:pr').q("label:${lableName}").isOpen()
   def prs = search.list().collect {
+    println it
+    println it.getRepository()
     it.getRepository().getPullRequest(it.getNumber())
   }
   println prs[0]
